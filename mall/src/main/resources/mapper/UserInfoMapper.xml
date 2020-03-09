@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blue.mall.mapper.UserInfoMapper">
+    <sql id="Base_Column">
+		ID ,NAME, PASSWORD, EMAIL, TELEPHONE, ROLE, STATUS
+	</sql>
+
+    <sql id="Base_Where">
+        <where>
+            <if test="id != null and id != ''">
+                AND ID=#{id}
+            </if>
+        </where>
+        <where>
+            <if test="name != null and name != ''">
+                AND NAME like concat(concat('%',#{name}),'%')
+            </if>
+        </where>
+        <where>
+            <if test="email != null and email != ''">
+                AND EMAIL=#{email}
+            </if>
+        </where>
+        <where>
+            <if test="telephone != null and telephone != ''">
+                AND TELEPHONE=#{telephone}
+            </if>
+        </where>
+        <where>
+            <if test="role != null">
+                AND ROLE=#{role}
+            </if>
+        </where>
+        <where>
+            <if test="status != null">
+                AND STATUS=#{status}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Base_Update">
+        <set>
+            <if test="name != null and name != ''">
+                NAME=#{name},
+            </if>
+            <if test="telephone != null and telephone != ''">
+                TELEPHONE=#{telephone},
+            </if>
+            <if test="email != null and email != ''">
+                EMAIL=#{email},
+            </if>
+            <if test="password != null and password != ''">
+                PASSWORD=#{password},
+            </if>
+            <if test="status != null">
+                STATUS=#{status},
+            </if>
+        </set>
+    </sql>
+
+    <select id="findAll" parameterType="cn.blue.mall.bean.UserInfo"
+            resultType="cn.blue.mall.bean.UserInfo">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_users
+        <include refid="Base_Where"/>
+    </select>
+
+    <update id="updateStatusById" parameterType="cn.blue.mall.bean.UserInfo">
+        UPDATE MALL_USERS
+        SET status = #{userInfo.status}
+        WHERE id=#{userInfo.id}
+    </update>
+
+    <insert id="addUser" parameterType="cn.blue.mall.bean.UserInfo" keyProperty="id" keyColumn="id"
+            useGeneratedKeys="true">
+        INSERT INTO MALL_USERS(ID, NAME, PASSWORD, EMAIL, TELEPHONE)
+        VALUES (#{id}, #{name}, #{password}, #{email}, #{telephone})
+    </insert>
+
+    <update id="updateUserById" parameterType="cn.blue.mall.bean.UserInfo">
+        update MALL_USERS
+        <include refid="Base_Update"></include>
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="string">
+        DELETE FROM MALL_USERS
+        WHERE ID = #{id}
+    </delete>
+</mapper>
