@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blue.mall.mapper.PowersMapper">
+    <!--    中间表-->
+    <resultMap id="powersAndRolesMapper" type="cn.blue.mall.bean.Powers">
+        <id property="id" column="ID"/>
+        <result property="authName" column="AUTH_NAME"/>
+        <result property="grade" column="GRADE"/>
+        <result property="path" column="PATH"/>
+        <result property="pid" column="PID"/>
+        <collection property="rp" column="PID" ofType="cn.blue.mall.bean.Powers"
+                    select="findSecondPowersById"/>
+    </resultMap>
+    <!--    中间表-->
+    <resultMap id="rpMapper" type="cn.blue.mall.bean.RolesPowers">
+        <result property="rolesId" column="ROLES_ID"/>
+        <result property="powersId" column="POWERS_ID"/>
+    </resultMap>
+    <!--    二级权限-->
+    <resultMap id="powersMapper" type="cn.blue.mall.bean.Powers">
+        <id property="id" column="ID"/>
+        <result property="authName" column="AUTH_NAME"/>
+        <result property="grade" column="GRADE"/>
+        <result property="path" column="PATH"/>
+        <result property="pid" column="PID"/>
+        <collection property="children" column="id" ofType="cn.blue.mall.bean.Powers"
+                    select="findSecondRoles"/>
+    </resultMap>
+    <!--    三级权限-->
+    <resultMap id="powersMap" type="cn.blue.mall.bean.Powers">
+        <id property="id" column="ID"/>
+        <result property="authName" column="AUTH_NAME"/>
+        <result property="grade" column="GRADE"/>
+        <result property="path" column="PATH"/>
+        <result property="pid" column="PID"/>
+        <collection property="children" column="ID" ofType="cn.blue.mall.bean.Powers"
+                    select="findThirdRoles"/>
+    </resultMap>
+    <sql id="Base_Column">
+        ID,AUTH_NAME,GRADE,PID,PATH
+	</sql>
+
+    <sql id="Base_Where">
+        <where>
+            <if test="id != null">
+                ID=#{id}
+            </if>
+            <if test="authName !='' and authName != null">
+                authName=#{auth_name}
+            </if>
+            <if test="grade !='' and grade != null">
+                GRADE=#{grade}
+            </if>
+            <if test="pid != null">
+                PID=#{pid}
+            </if>
+        </where>
+    </sql>
+
+    <update id="setPidByRolesId">
+        update MALL_POWERS
+        set PID = #{rolesId}
+        where grade = 0
+    </update>
+
+    <select id="findAll" parameterType="cn.blue.mall.bean.Powers"
+            resultType="cn.blue.mall.bean.Powers">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_powers
+        <include refid="Base_Where"/>
+    </select>
+
+    <select id="findAllFirstPowers" parameterType="int" resultMap="powersMapper">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_powers
+        where grade = 0
+    </select>
+
+    <select id="findSecondRoles" parameterType="int" resultMap="powersMap">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_powers
+        WHERE PID=#{id}
+        AND grade = 1
+    </select>
+
+    <!--    parameterType="int" 加个就报错，说id找不到-->
+    <select id="findThirdRoles" resultType="cn.blue.mall.bean.Powers">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_powers
+        WHERE PID=#{id}
+        AND grade = 2
+    </select>
+
+    <!--    查找权限树-->
+    <select id="findPowersTree" resultMap="powersMapper">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_powers
+        WHERE grade = 0
+    </select>
+
+    <!--    根据中间表来查角色id的权限-->
+    <select id="findTreeByRolesAndPowers" resultType="cn.blue.mall.bean.Powers">
+        select ID, AUTH_NAME, PID, PATH, GRADE
+        FROM mall_powers mp, roles_powers rp
+        WHERE mp.id=rp.powers_id and  rp.roles_id=#{powers}
+    </select>
+
+    <!--    根据角色id赋值给pid查找中间表的权限-->
+    <select id="findSecondPowersById" resultMap="rpMapper">
+        select ROLES_ID,POWERS_ID
+        FROM roles_powers rp
+        WHERE
+        rp.roles_id=#{rp}
+    </select>
+
+    <select id="findTreeByRolesId" resultType="cn.blue.mall.bean.RolesPowers">
+        select POWERS_ID
+        FROM roles_powers rp
+        WHERE rp.roles_id=#{rolesId}
+    </select>
+
+    <select id="findThirdGrade" resultType="cn.blue.mall.bean.Powers">
+        select
+        <include refid="Base_Column"></include>
+        from mall_powers
+        where grade = 2
+        and id=#{powersId}
+    </select>
+
+    <select id="findFirstPowers" resultMap="powersAndRolesMapper">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_powers
+        where grade = 0
+    </select>
+</mapper>

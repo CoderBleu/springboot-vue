@@ -25,7 +25,7 @@ public class UserInfoController {
     @ResponseBody
     public Result changeStatus(UserInfo userInfo) {
         try {
-            if(userInfoService.updateStatusById(userInfo)) {
+            if (userInfoService.updateStatusById(userInfo)) {
                 return Result.success().setCode(200).setMsg("修改成功");
             }
         } catch (Exception e) {
@@ -39,10 +39,10 @@ public class UserInfoController {
     public Result addUser(UserInfo userInfo) {
         if (userInfo != null) {
             try {
-                if (userInfo.getId() != null && !userInfo.getId().equals("")){
+                if (userInfo.getId() != null && !userInfo.getId().equals("")) {
                     userInfoService.updateUserById(userInfo);
                     return Result.success().setCode(200).setMsg("修改成功");
-                }else {
+                } else {
                     userInfoService.addUser(userInfo);
                     return Result.success().setCode(200).setMsg("添加成功");
                 }
@@ -84,5 +84,17 @@ public class UserInfoController {
         r.add("data", list);
         r.setMsg("查询成功");
         return r;
+    }
+
+    @PutMapping("/setRoles")
+    @ResponseBody
+    public Result updateRolesById(UserInfo userInfo) {
+        try {
+            userInfoService.updateUserById(userInfo);
+            return Result.success().setCode(200).setMsg("修改成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error(500).setMsg("修改失败");
+        }
     }
 }

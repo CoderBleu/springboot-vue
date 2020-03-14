@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blue.mall.mapper.RolesMapper">
+    <resultMap id="rolesMapper" type="cn.blue.mall.bean.Roles">
+        <id column="ID" property="id"/>
+        <result column="ROLE_NAME" property="roleName"/>
+        <result column="ROLE_DESC" property="roleDesc"/>
+        <collection column="ID" property="roles" select="cn.blue.mall.mapper.PowersMapper.findAllFirstPowers"
+                    ofType="cn.blue.mall.bean.Powers"/>
+    </resultMap>
+    <!--    仅仅查一级权限-->
+    <resultMap id="rolesMapperToFirstPowers" type="cn.blue.mall.bean.Roles">
+        <id column="ID" property="id"/>
+        <result column="ROLE_NAME" property="roleName"/>
+        <result column="ROLE_DESC" property="roleDesc"/>
+        <collection column="{ID=ID}" property="roles" select="cn.blue.mall.mapper.PowersMapper.findFirstPowers"
+                    ofType="cn.blue.mall.bean.Powers"/>
+    </resultMap>
+    <!--    中间表，查权限树-->
+    <resultMap id="rolesMap" type="cn.blue.mall.bean.Roles">
+        <id column="ID" property="id"/>
+        <result column="ROLE_NAME" property="roleName"/>
+        <result column="ROLE_DESC" property="roleDesc"/>
+        <collection column="ID" property="powers" select="cn.blue.mall.mapper.PowersMapper.findTreeByRolesAndPowers"
+                    ofType="cn.blue.mall.bean.Powers"/>
+    </resultMap>
+    <sql id="Base_Column">
+        ID,ROLE_NAME,ROLE_DESC
+	</sql>
+
+    <sql id="Base_Where">
+        <where>
+            <if test="id != null">
+                ID=#{id}
+            </if>
+            <if test="roleName !='' and roleName != null">
+                ROLENAME=#{role_name}
+            </if>
+            <if test="grade !='' and grade != null">
+                ROLEDESC=#{role_desc}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="addTreeByPowerId">
+        INSERT INTO
+            roles_powers(roles_id, powers_id)
+        VALUES
+            (#{rolesId},#{powersId})
+    </insert>
+
+    <delete id="deleteTreeByRolesId">
+        DELETE
+            FROM roles_powers
+            WHERE
+            roles_id = #{rolesId}
+    </delete>
+
+    <select id="findAll" parameterType="cn.blue.mall.bean.Roles"
+            resultMap="rolesMapper">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_roles
+        <include refid="Base_Where"/>
+    </select>
+
+    <select id="findTreeByRolesId" parameterType="int" resultMap="rolesMap">
+        SELECT *
+        FROM MALL_ROLES
+        WHERE
+        id = #{rolesId}
+    </select>
+
+    <select id="findAllPowers" parameterType="cn.blue.mall.bean.Roles"
+            resultMap="rolesMapper">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM mall_roles
+        <include refid="Base_Where"/>
+    </select>
+
+    <select id="findRolesAndFirstPower" resultMap="rolesMapperToFirstPowers">
+        select <include refid="Base_Column"></include>
+        from MALL_ROLES
+    </select>
+
+    <select id="findSetRoleByRoleId" resultType="cn.blue.mall.bean.Roles">
+        select <include refid="Base_Column"></include>
+        from MALL_ROLES
+        where ID=#{rolesId}
+    </select>
+
+    <insert id="addNewRole">
+        insert into MALL_ROLES(ROLE_NAME, ROLE_DESC)
+        values (#{roleName}, #{roleDesc})
+    </insert>
+</mapper>
