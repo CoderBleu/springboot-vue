@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.blue.mall.mapper.GoodsMapper">
+    <resultMap id="goodsMapper" type="cn.blue.mall.bean.GoodsInfo">
+        <id column="ID" property="id"/>
+        <result column="cat_name" property="catName"/>
+        <result column="CAT_PID" property="catPid"/>
+        <result column="CAT_DELETED" property="catDeleted"/>
+        <result column="CAT_LEVEL" property="catLevel"/>
+        <collection property="children" column="ID" ofType="cn.blue.mall.bean.GoodsInfo"
+                    select="findSecondGoods"/>
+    </resultMap>
+    <resultMap id="goodsSecondMapper" type="cn.blue.mall.bean.GoodsInfo">
+        <id column="ID" property="id"/>
+        <result column="cat_name" property="catName"/>
+        <result column="CAT_PID" property="catPid"/>
+        <result column="CAT_DELETED" property="catDeleted"/>
+        <result column="CAT_LEVEL" property="catLevel"/>
+        <collection property="children" column="ID" ofType="cn.blue.mall.bean.GoodsInfo"
+                    select="findThirdGoods"/>
+    </resultMap>
+
+    <sql id="Base_Column">
+        ID, CAT_NAME, CAT_PID, CAT_DELETED, CAT_LEVEL
+    </sql>
+
+    <sql id="Base_Where">
+        <where>
+            <if test="id != null">
+                AND ID=#{id}
+            </if>
+            <if test="catName != null and catName != ''">
+                AND CAT_NAME=#{catName}
+            </if>
+            <if test="catPid != null">
+                AND CAT_PID=#{catPid}
+            </if>
+            <if test="catLevel != null">
+                AND CAT_LEVEL=#{catLevel}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Update_Column">
+        <set>
+            <if test="id != null">
+                ID=#{id},
+            </if>
+            <if test="catName != null and catName != ''">
+                CAT_NAME=#{catName},
+            </if>
+            <if test="catDeleted != null">
+                CAT_DELETED=#{catDeleted},
+            </if>
+        </set>
+    </sql>
+    <insert id="addCatByPId">
+        insert into mall_goods(cat_name,cat_pid,cat_level,cat_deleted)
+        values( #{catName},#{catPid} ,#{catLevel}, #{catDeleted})
+    </insert>
+
+    <update id="updateById">
+        update MALL_GOODS
+        <include refid="Update_Column"/>
+        where ID = #{id}
+    </update>
+
+    <!--    先查一级-->
+    <select id="findAll" resultMap="goodsMapper">
+        select * from MALL_GOODS
+        <include refid="Base_Where"/>
+    </select>
+
+    <!--    查二级，这里的id不论写成啥，都会赋值上去-->
+    <select id="findSecondGoods" resultMap="goodsSecondMapper">
+        select * from MALL_GOODS
+        where cat_pid=#{id}
+        And cat_level = 1
+    </select>
+
+    <!--    查三级-->
+    <select id="findThirdGoods" resultMap="goodsSecondMapper">
+        select * from MALL_GOODS
+        where cat_pid=#{id}
+        And cat_level = 2
+    </select>
+</mapper>

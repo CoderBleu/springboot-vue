@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.blue.mall.mapper.UserInfoMapper">
+    <resultMap id="userInfoMapper" type="cn.blue.mall.bean.UserInfo">
+        <id column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="EMAIL" property="email"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="STATUS" property="status"/>
+        <result column="TELEPHONE" property="telephone"/>
+        <association property="roles" column="ROLE" javaType="cn.blue.mall.bean.Roles"
+        select="cn.blue.mall.mapper.RolesMapper.findSetRoleByRoleId"/>
+    </resultMap>
+
     <sql id="Base_Column">
 		ID ,NAME, PASSWORD, EMAIL, TELEPHONE, ROLE, STATUS
 	</sql>
@@ -52,6 +63,9 @@
             <if test="password != null and password != ''">
                 PASSWORD=#{password},
             </if>
+            <if test="role != null">
+                ROLE=#{role},
+            </if>
             <if test="status != null">
                 STATUS=#{status},
             </if>
@@ -59,7 +73,7 @@
     </sql>
 
     <select id="findAll" parameterType="cn.blue.mall.bean.UserInfo"
-            resultType="cn.blue.mall.bean.UserInfo">
+            resultMap="userInfoMapper">
         SELECT
         <include refid="Base_Column"/>
         FROM mall_users

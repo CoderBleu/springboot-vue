@@ -36,4 +36,9 @@ public class UserInfo {
      * 用户状态：0正常，1删除
      */
     private Integer status;
+
+    /**
+     * 分配的角色
+     */
+    private Roles roles;
 }
