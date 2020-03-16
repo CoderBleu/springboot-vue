@@ -43,16 +43,16 @@
     <sql id="Base_Where">
         <where>
             <if test="id != null">
-                ID=#{id}
+                AND ID=#{id}
             </if>
             <if test="authName !='' and authName != null">
-                authName=#{auth_name}
+                AND authName=#{auth_name}
             </if>
             <if test="grade !='' and grade != null">
-                GRADE=#{grade}
+                AND GRADE=#{grade}
             </if>
             <if test="pid != null">
-                PID=#{pid}
+                AND PID=#{pid}
             </if>
         </where>
     </sql>
