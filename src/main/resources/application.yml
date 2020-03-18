@@ -3,11 +3,10 @@ server:
 
 spring:
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: oracle.jdbc.driver.OracleDriver #oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
-    username: scott
-    password: ly9781
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall_vue?serverTimezone=GMT%2b8
+    username: root
+    password: root
 
   thymeleaf:
     cache: false
