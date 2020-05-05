@@ -2,7 +2,6 @@ package cn.blue.mall.bean;
 
 import cn.blue.mall.face.Result;
 import lombok.Data;
-import org.springframework.data.relational.core.sql.In;
 
 /**
  * @author Blue
