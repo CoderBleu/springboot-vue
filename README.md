@@ -15,7 +15,7 @@
 
 > 电商后台管理系统整体采用前后端分离的开发模式,其中前端项目是基于 Vue 技术栈的 SPA 项目
 
-  ![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/login.png)
+  ![](https://img-blog.csdnimg.cn/20200505224259629.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
 ### 技术选型
 
@@ -354,7 +354,7 @@ if (file.isDirectory()) {
 ```
 
 11.简易效果图
-  ![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/shibie.png)
+  ![](https://img-blog.csdnimg.cn/20200505224218347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
   ![](https://img-blog.csdnimg.cn/20200505183512315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
