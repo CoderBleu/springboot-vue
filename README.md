@@ -15,7 +15,7 @@
 
 > 电商后台管理系统整体采用前后端分离的开发模式,其中前端项目是基于 Vue 技术栈的 SPA 项目
 
-![](/imgs/login.png)
+  ![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/login.png)
 
 ### 技术选型
 
@@ -199,7 +199,8 @@ public class FaceDetect {
 ```
 
 4.利用返回的Json串生成实体类(按需要导入即可)：[Json串生成Java实体类工具](http://www.bejson.com/json2javapojo/new/)
-![](https://img-blog.csdnimg.cn/20200505183604561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+
+  ![](https://img-blog.csdnimg.cn/20200505183604561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
 5.人脸搜索
 ```java
@@ -353,9 +354,9 @@ if (file.isDirectory()) {
 ```
 
 11.简易效果图
-![](https://img-blog.csdnimg.cn/20200505183412341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+  ![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/shibie.png)
 
-![](https://img-blog.csdnimg.cn/20200505183512315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+  ![](https://img-blog.csdnimg.cn/20200505183512315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
 
 [更多功能参考百度人脸识别Api文档即可](https://cloud.baidu.com/doc/FACE/s/yk37c1u4t)
@@ -757,18 +758,19 @@ axios.interceptors.request.use(config => {
   3. 步骤 3
 
   > 在 public/index.html 文件头部,将 main-prod 中的已经进行配置的 import(<code>js 文件</code>)删除替换为 cdn 引入
-  >
-  > <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  > <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
-  > <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
-  > <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
-  > <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
-  > <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
-  > <script src="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.min.js"></script>
-  > <script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
-  > <script src="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.js"></script>
-  > <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
-
+  
+  ```js
+   <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+   <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
+   <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+   <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+   <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+   <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+   <script src="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
+   <script src="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.js"></script>
+   <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+  ```
   4. cdn 加速前后对比( **chunk-vendors**打包文件)
 
   > Parsed 大小 2.6m=> **596.9kB**
