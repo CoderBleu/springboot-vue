@@ -16,7 +16,7 @@
 
 > 电商后台管理系统整体采用前后端分离的开发模式,其中前端项目是基于 Vue 技术栈的 SPA 项目
 
-![](./src/assets//mall_desc02.png)
+![](/imgs/login.png)
 
 ### 技术选型
 
@@ -200,7 +200,7 @@ public class FaceDetect {
 ```
 
 4.利用返回的Json串生成实体类(按需要导入即可)：[Json串生成Java实体类工具](http://www.bejson.com/json2javapojo/new/)
-![](https://img-blog.csdnimg.cn/20200505183604561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+![](/imgs/shitilei.png)
 
 5.人脸搜索
 ```java
@@ -354,9 +354,9 @@ if (file.isDirectory()) {
 ```
 
 11.简易效果图
-![](https://img-blog.csdnimg.cn/20200505183412341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+![](/imgs/shibie.png)
 
-![](https://img-blog.csdnimg.cn/20200505183512315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+![](/imgs/jianyan.png)
 
 
 [更多功能参考百度人脸识别Api文档即可](https://cloud.baidu.com/doc/FACE/s/yk37c1u4t)
@@ -588,10 +588,9 @@ axios.interceptors.request.use(config => {
 >通过用户管理管理各个用户间的信息，还可以为其分配角色权限
 
 用户列表
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/yonghu.png)
+![](/imgs/yonghu.png)
 
-用户编辑
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/yonghu1.png)
+![](/imgs/yonghu1.png)
 等...
 
 ### 权限管理
@@ -600,9 +599,9 @@ axios.interceptors.request.use(config => {
 
 > 通过权限管理模块控制不同的用户可以进行哪些操作,具体可以通过角色的方式进行控制,即每个用户分配一个特定的角色,角色包括不同的功能权限
 
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/quanxian.png)
+![](/imgs/quanxian.png)
 
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/quanxian1.png)
+![](/imgs/quanxian1.png)
 
 
 ### 分类管理
@@ -617,18 +616,19 @@ axios.interceptors.request.use(config => {
 
 > 商品参数用于显示商品的特征信息,可以通过电商平台详情页面直观的看到
 
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/fenlei.png)
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/fenlei1.png)
+![](/imgs/fenlei.png)
+![](/imgs/fenlei1.png)
 
 ### 数据统计
 
 旨在熟悉Echarts可视化图表的使用
+
 #### 模拟二月份疫情图
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/shuju.png)
+![](/imgs/shuju.png)
 
 ### 订单管理
 
-![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/dingdan.png)
+![](/imgs/dingdan.png)
 
 
 ### 项目所用依赖(vue 全家桶不描述)
