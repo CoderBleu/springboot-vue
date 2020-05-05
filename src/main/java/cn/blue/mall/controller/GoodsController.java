@@ -1,7 +1,6 @@
 package cn.blue.mall.controller;
 
 import cn.blue.mall.bean.GoodsInfo;
-import cn.blue.mall.bean.UserInfo;
 import cn.blue.mall.service.GoodsService;
 import cn.blue.mall.utils.Result;
 import com.github.pagehelper.PageHelper;

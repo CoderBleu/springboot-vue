@@ -1,6 +1,6 @@
-## 电商后台管理系统(Springboot 项目)
+## 电商后台管理系统(Springboot-vue)
 
-[Demo Site](http://43.226.35.120/)
+[Demo Site](http://43.226.35.120/)<br>
 
 [My Blog](https://coderblue.cn/)
 
@@ -31,8 +31,11 @@
 #### 后端项目技术栈
 
 - Springboot
-- Mysql(开始用的 Oracle，在部署服务器的时候遂更改)
+- Mysql8.0(开始用的 Oracle，在部署服务器的时候遂更改)
 - Mybatis
+
+#### Api接口
+<font color="#e2u5os">百度人脸识别</font>
 
 ### 项目初始化
 
@@ -48,6 +51,204 @@
 ##### 相关依赖-按需导入
 
 ![](./src/assets//mall_desc03.png)
+
+#### 人脸识别简易使用
+
+1.工具包准备
+```java
+// FileUtil,Base64Util,HttpUtil,GsonUtils请从
+https://ai.baidu.com/file/658A35ABAB2D404FBF903F64D47C1F72
+https://ai.baidu.com/file/C8D81F3301E24D2892968F09AE1AD6E2
+https://ai.baidu.com/file/544D677F5D4E4F17B4122FBD60DB82B3
+https://ai.baidu.com/file/470B3ACCA3FE43788B5A963BF0B625F3
+```
+ 
+2.人脸检测
+```java
+package cn.blue.mall.utils;
+
+import cn.blue.mall.service.impl.AuthServiceImpl;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 人脸检测与属性分析
+ * @author Blue
+ */
+public class FaceDetect {
+
+    public static String faceDetect(String filePath) {
+        // filePath 文件路径
+        File file = new File(filePath);
+        // 请求url
+        String url = "https://aip.baidubce.com/rest/2.0/face/v3/detect";
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("image", Base64Util.encode(FileUtil.readFileByBytes(filePath)));
+            // 返回的参数信息之间不要有空格，pic必须要有face
+            map.put("face_field", "age,beauty,expression,face_shape,gender,glasses,race,quality,eye_status,emotion,face_type,location");
+            map.put("image_type", "BASE64");
+            String param = GsonUtils.toJson(map);
+
+            // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
+            String accessToken = AuthServiceImpl.getAuth();
+            String result = HttpUtil.post(url, accessToken, "application/json", param);
+            System.out.println(result);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+}
+```
+
+3.利用返回的Json串生成实体类(按需要导入即可)：[Json串生成Java实体类工具](http://www.bejson.com/json2javapojo/new/)
+![](https://img-blog.csdnimg.cn/20200505183604561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+
+4.人脸搜索
+```java
+package cn.blue.mall.utils;
+
+import cn.blue.mall.consts.FaceConst;
+import cn.blue.mall.service.impl.AuthServiceImpl;
+
+import java.io.File;
+import java.util.*;
+
+/**
+ * 人脸搜索
+ * @author Blue
+ */
+public class FaceSearch {
+
+    public static String faceSearch(String filePath) {
+        // 请求url
+        String url = "https://aip.baidubce.com/rest/2.0/face/v3/search";
+        File file = new File(filePath);
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("image", Base64Util.encode(FileUtil.readFileByBytes(filePath)));
+            map.put("liveness_control", "NONE");
+            map.put("group_id_list", FaceConst.GROUP_ID);
+            map.put("image_type", "BASE64");
+            map.put("quality_control", "LOW");
+
+            String param = GsonUtils.toJson(map);
+
+            // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
+            String accessToken = AuthServiceImpl.getAuth();
+
+            String result = HttpUtil.post(url, accessToken, "application/json", param);
+            System.out.println(result);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+}
+```
+
+5.人脸注册
+```java
+package cn.blue.mall.utils;
+
+import cn.blue.mall.consts.FaceConst;
+import cn.blue.mall.service.impl.AuthServiceImpl;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+/**
+ * 人脸注册
+ * @author Blue
+ */
+public class FaceAdd {
+
+    public static String faceAdd(String filePath) {
+        // 请求url
+        String url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add";
+        try {
+            Map<String, Object> map = new HashMap<>();
+            map.put("image", Base64Util.encode(FileUtil.readFileByBytes(filePath)));
+            String userId = UUID.randomUUID().toString().replace("-", "").substring(16) + System.currentTimeMillis();
+            map.put("group_id", FaceConst.GROUP_ID);
+            map.put("user_id", userId);
+            map.put("user_info", "abc");
+            map.put("liveness_control", "NONE");
+            map.put("image_type", "BASE64");
+            map.put("quality_control", "LOW");
+
+            String param = GsonUtils.toJson(map);
+
+            // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
+            String accessToken = AuthServiceImpl.getAuth();
+
+            String result = HttpUtil.post(url, accessToken, "application/json", param);
+            System.out.println(result);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+```
+
+6.功能测试，推荐先使用junit5单元测试
+```java
+class FaceSearchTest {
+
+    @Test
+    void faceSearch() {
+        // 上传的图片不宜太大了，不然不好处理。
+        String resultJson = FaceSearch.faceSearch("D:\\pythonDemo\\8.jpg");
+        FaceInfo faceInfo = GsonUtils.fromJson(resultJson, FaceInfo.class);
+        System.err.println("人脸搜索：" + faceInfo.getResult().getUser_list().get(0).getScore());
+    }
+}
+```
+
+7.对前端传过来的base64处理转换成图片
+```java
+BASE64Decoder decoder = new BASE64Decoder();
+String imgFilePath = FaceConst.PATH_PRE + System.currentTimeMillis() + FaceConst.PATH_SUF;
+try (OutputStream out = new FileOutputStream(imgFilePath)) {
+    // Base64解码 生成jpeg图片
+    byte[] decoderBytes = decoder.decodeBuffer(base64.split(",")[1]);
+    // 写入到磁盘指定地方
+    out.write(decoderBytes);
+}
+```
+
+8.定量清理图片
+```java
+File file = new File(FaceConst.PATH_PRE);
+// 判断file是否是文件目录 若是返回TRUE
+if (file.isDirectory()) {
+    //  name存储file文件夹中的文件名
+    String name[] = file.list();
+    for (int i = 0; i < name.length; i++) {
+        // 此时就可得到文件夹中的文件
+        File f = new File(FaceConst.PATH_PRE, name[i]);
+        // 删除文件
+        f.delete();
+    }
+}
+```
+
+9.简易效果图
+![](https://img-blog.csdnimg.cn/20200505183412341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+
+![](https://img-blog.csdnimg.cn/20200505183512315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
+
+[更多功能参考百度人脸识别Api文档即可](https://cloud.baidu.com/doc/FACE/s/yk37c1u4t)
 
 #### 后端项目的环境安装配置
 

@@ -1,15 +1,13 @@
 package cn.blue.mall.mapper;
 
 import cn.blue.mall.bean.Powers;
-import cn.blue.mall.bean.Roles;
 import cn.blue.mall.bean.RolesPowers;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.relational.core.sql.In;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+@Mapper
 public interface PowersMapper {
     /**
      * 查询权限所有列表信息

@@ -41,4 +41,8 @@ public class UserInfo {
      * 分配的角色
      */
     private Roles roles;
+    /**
+     *
+     */
+    private FaceInfo faceInfo;
 }

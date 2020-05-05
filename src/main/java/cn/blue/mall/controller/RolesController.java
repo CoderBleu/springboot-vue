@@ -1,19 +1,14 @@
 package cn.blue.mall.controller;
 
-import cn.blue.mall.bean.Powers;
 import cn.blue.mall.bean.Roles;
-import cn.blue.mall.bean.UserInfo;
 import cn.blue.mall.service.PowersService;
 import cn.blue.mall.service.RolesService;
-import cn.blue.mall.service.UserInfoService;
 import cn.blue.mall.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Blue

@@ -1,19 +1,14 @@
 package cn.blue.mall.controller;
 
 import cn.blue.mall.bean.Powers;
-import cn.blue.mall.bean.Powers;
 import cn.blue.mall.service.PowersService;
 import cn.blue.mall.utils.Result;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.annotation.Resources;
 import java.util.List;
 
 /**

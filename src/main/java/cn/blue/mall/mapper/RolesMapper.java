@@ -1,11 +1,12 @@
 package cn.blue.mall.mapper;
 
 import cn.blue.mall.bean.Roles;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.relational.core.sql.In;
 
 import java.util.List;
 
+@Mapper
 public interface RolesMapper {
     /**
      * 查询角色所有列表信息

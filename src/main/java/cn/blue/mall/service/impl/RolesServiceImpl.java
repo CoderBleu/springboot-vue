@@ -1,18 +1,12 @@
 package cn.blue.mall.service.impl;
 
-import cn.blue.mall.bean.Powers;
 import cn.blue.mall.bean.Roles;
-import cn.blue.mall.bean.RolesPowers;
 import cn.blue.mall.mapper.PowersMapper;
 import cn.blue.mall.mapper.RolesMapper;
 import cn.blue.mall.service.RolesService;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**

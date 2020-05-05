@@ -1,10 +1,12 @@
 package cn.blue.mall.mapper;
 
 import cn.blue.mall.bean.UserInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface UserInfoMapper {
     /**
      * 查询用户所有列表信息

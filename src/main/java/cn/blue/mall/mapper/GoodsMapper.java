@@ -1,9 +1,11 @@
 package cn.blue.mall.mapper;
 
 import cn.blue.mall.bean.GoodsInfo;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface GoodsMapper {
     /**
      * 查找商品列表

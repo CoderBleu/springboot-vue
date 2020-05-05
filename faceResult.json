@@ -1,0 +1,76 @@
+{
+  "error_code": 0,
+  "error_msg": "SUCCESS",
+  "log_id": 1545754520120,
+  "timestamp": 1588584397,
+  "cached": 0,
+  "result": {
+    "face_num": 1,
+    "face_list": [
+      {
+        "face_token": "3462da5a8cc2e823866be47d2642685b",
+        "location": {
+          "left": 737.34,
+          "top": 312.92,
+          "width": 296,
+          "height": 285,
+          "rotation": -5
+        },
+        "face_probability": 1,
+        "angle": {
+          "yaw": 11.63,
+          "pitch": 4.7,
+          "roll": -7.24
+        },
+        "age": 22,
+        "beauty": 60.25,
+        "expression": {
+          "type": "none",
+          "probability": 1
+        },
+        "face_shape": {
+          "type": "round",
+          "probability": 0.27
+        },
+        "gender": {
+          "type": "female",
+          "probability": 1
+        },
+        "glasses": {
+          "type": "none",
+          "probability": 1
+        },
+        "race": {
+          "type": "yellow",
+          "probability": 1
+        },
+        "quality": {
+          "occlusion": {
+            "left_eye": 0.02,
+            "right_eye": 0.02,
+            "nose": 0,
+            "mouth": 0.3,
+            "left_cheek": 0.05,
+            "right_cheek": 0.48,
+            "chin_contour": 0.99
+          },
+          "blur": 0,
+          "illumination": 199,
+          "completeness": 1
+        },
+        "eye_status": {
+          "left_eye": 0.9999998808,
+          "right_eye": 1
+        },
+        "emotion": {
+          "type": "",
+          "probability": 0
+        },
+        "face_type": {
+          "type": "human",
+          "probability": 0.97
+        }
+      }
+    ]
+  }
+}
