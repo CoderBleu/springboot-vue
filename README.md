@@ -10,7 +10,6 @@
 
 > 用于管理用户账号，商品分类，商品信息，订单，数据统计等业务功能
 
-![](./src/assets/mall_desc01.png)
 
 ### 开发模式
 
@@ -200,7 +199,7 @@ public class FaceDetect {
 ```
 
 4.利用返回的Json串生成实体类(按需要导入即可)：[Json串生成Java实体类工具](http://www.bejson.com/json2javapojo/new/)
-![](/imgs/shitilei.png)
+![](https://img-blog.csdnimg.cn/20200505183604561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
 5.人脸搜索
 ```java
@@ -354,9 +353,9 @@ if (file.isDirectory()) {
 ```
 
 11.简易效果图
-![](/imgs/shibie.png)
+![](https://img-blog.csdnimg.cn/20200505183412341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
-![](/imgs/jianyan.png)
+![](https://img-blog.csdnimg.cn/20200505183512315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNDc2NDY1,size_16,color_FFFFFF,t_70)
 
 
 [更多功能参考百度人脸识别Api文档即可](https://cloud.baidu.com/doc/FACE/s/yk37c1u4t)
@@ -588,9 +587,10 @@ axios.interceptors.request.use(config => {
 >通过用户管理管理各个用户间的信息，还可以为其分配角色权限
 
 用户列表
-![](/imgs/yonghu.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/yonghu.png)
 
-![](/imgs/yonghu1.png)
+用户编辑
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/yonghu1.png)
 等...
 
 ### 权限管理
@@ -599,9 +599,9 @@ axios.interceptors.request.use(config => {
 
 > 通过权限管理模块控制不同的用户可以进行哪些操作,具体可以通过角色的方式进行控制,即每个用户分配一个特定的角色,角色包括不同的功能权限
 
-![](/imgs/quanxian.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/quanxian.png)
 
-![](/imgs/quanxian1.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/quanxian1.png)
 
 
 ### 分类管理
@@ -616,19 +616,18 @@ axios.interceptors.request.use(config => {
 
 > 商品参数用于显示商品的特征信息,可以通过电商平台详情页面直观的看到
 
-![](/imgs/fenlei.png)
-![](/imgs/fenlei1.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/fenlei.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/fenlei1.png)
 
 ### 数据统计
 
 旨在熟悉Echarts可视化图表的使用
-
 #### 模拟二月份疫情图
-![](/imgs/shuju.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/shuju.png)
 
 ### 订单管理
 
-![](/imgs/dingdan.png)
+![](https://cdn.jsdelivr.net/gh/onecoderly/cdn/mall/dingdan.png)
 
 
 ### 项目所用依赖(vue 全家桶不描述)
@@ -740,18 +739,20 @@ axios.interceptors.request.use(config => {
   2. 步骤 2
 
   > 在 public/index.html 文件头部,将 main-prod 中的已经进行配置的 import(<code>样式表</code>)删除替换为 cdn 引入
-  >
-  > <link href="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.css" rel="stylesheet">
-  >
-  > ​ <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.bubble.min.css" rel="stylesheet">
-  >
-  > ​ <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.core.min.css" rel="stylesheet">
-  >
-  > ​ <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.snow.min.css" rel="stylesheet">
-  >
-  > ​ <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-  >
-  > ​ <link href="https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet">
+  
+  ```css
+   <link href="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.css" rel="stylesheet">
+
+  ​ <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.bubble.min.css" rel="stylesheet">
+
+  ​ <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.core.min.css" rel="stylesheet">
+
+  ​ <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.snow.min.css" rel="stylesheet">
+
+  ​ <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+
+  ​ <link href="https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet">
+  ```
 
   3. 步骤 3
 
@@ -839,9 +840,6 @@ axios.interceptors.request.use(config => {
 申请 ssl 证书(https://freessl.org) => 正常企业还是使用收费 ssh(http 协议默认运行在 80 端口,https 默认运行在 443 端口)
 
 ```
-
-
-
 ---
 
 [接口API](./api接口文档.md)
