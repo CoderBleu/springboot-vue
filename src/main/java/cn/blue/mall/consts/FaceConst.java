@@ -35,12 +35,12 @@ public interface FaceConst {
     /**
      * 百度云应用的AK
      */
-    String CLIENT_ID = "Pr9pmCNIHsozqlqAOT18f3S7";
+    String CLIENT_ID = "";
 
     /**
      * 百度云应用的SK
      */
-    String CLIENT_SECRET = "2FhMGEuyREsy5vy7vC55GaNV8TTVfZfv";
+    String CLIENT_SECRET = "";
 
     /**
      * 人脸库
